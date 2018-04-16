@@ -24,7 +24,8 @@
 						var src = name.substring(0, str_len - 4);
 						document.getElementById("script").src = "img/" + src + ".PNG";
                         audio.playbackRate = 1.2;
-                        audio.play();
+						audio.play();
+						scroll();
 						i == 0 ? j++ : false ;
 						$("#count").text(j);
                     }, true);
@@ -36,8 +37,18 @@
 					var src = name.substring(0, str_len - 4);
 					document.getElementById("script").src = "img/" + src + ".PNG";
                     audio.play();
-					
+					scroll();
                 }
+
+				function scroll(){
+					var interval;
+					window.scrollTo(document.body.scrollHeight, 0)
+					setTimeout(function(){
+						while($(window).scrollTop() + $(window).height() != $(document).height()){
+						window.scrollBy(0,20);
+					}},20000);
+					
+				}
 
                 document.getElementById("file").addEventListener("change", handleFile, true);
 			});
