@@ -41,12 +41,16 @@
                 }
 
 				function scroll(){
-					var interval;
+					
 					window.scrollTo(document.body.scrollHeight, 0)
 					setTimeout(function(){
-						while($(window).scrollTop() + $(window).height() != $(document).height()){
-						window.scrollBy(0,20);
-					}},20000);
+						var interval = setInterval(function(){
+							window.scrollBy(0, 1);
+							if($(window).scrollTop() + $(window).height() == $(document).height()){
+								clearInterval(interval);
+							}
+						});
+					},40000);
 					
 				}
 
@@ -59,6 +63,6 @@
 		<audio id="play_file" controls>
 		</audio>
 		<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
-		<div><img id="script" /></div>
+		<div><img id="script" style="width: 800px"/></div>
 	</div>
 </html>
