@@ -30,12 +30,12 @@
 						$("#count").text(j);
                     }, true);
 					$("#count").text(j);
-                    audio.playbackRate = 1.2;
                     audio.src = URL.createObjectURL(files[0]);
 					var name = files[0]['name'];
 					var str_len = name.length;
 					var src = name.substring(0, str_len - 4);
 					document.getElementById("script").src = "img/" + src + ".PNG";
+					audio.playbackRate = 1.2;
                     audio.play();
 					scroll();
                 }
@@ -63,6 +63,6 @@
 		<audio id="play_file" controls>
 		</audio>
 		<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
-		<div><img id="script" style="width: 800px"/></div>
+		<div><img id="script"/></div>
 	</div>
 </html>
