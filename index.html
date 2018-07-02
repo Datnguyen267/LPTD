@@ -4,65 +4,108 @@
         <title>Play english listen</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script language="javascript">
-            $(document).ready(function() {
-                function handleFile(event) {
-                    var files = event.target.files;
-					var audio = document.getElementById("play_file");
-					var duration = 0;
-					for (var i = 0; i < files.length; i++){
-					    audio.src = URL.createObjectURL(files[i]);
-						audio.load();
-					}
-					
-                    var i = 0, j = 1;
-                    audio.addEventListener('ended', function () {
-                        i = ++i < files.length ? i : 0;
-                        audio.src = URL.createObjectURL(files[i]);
-						var name = files[i]['name'];
-						var str_len = name.length;
-						var src = name.substring(0, str_len - 4);
-						document.getElementById("script").src = "img/" + src + ".PNG";
-                        audio.playbackRate = 1.25;
-						audio.play();
-						scroll();
-						i == 0 ? j++ : false ;
-						$("#count").text(j);
-                    }, true);
-					$("#count").text(j);
-                    audio.src = URL.createObjectURL(files[0]);
-					var name = files[0]['name'];
-					var str_len = name.length;
-					var src = name.substring(0, str_len - 4);
-					document.getElementById("script").src = "img/" + src + ".PNG";
-					audio.playbackRate = 1.25;
-                    audio.play();
-					scroll();
-                }
-
-				function scroll(){
-					
-					window.scrollTo(document.body.scrollHeight, 0)
-					setTimeout(function(){
-						var interval = setInterval(function(){
-							window.scrollBy(0, 1);
-							if($(window).scrollTop() + $(window).height() == $(document).height()){
-								clearInterval(interval);
-							}
-						});
-					},40000);
-					
+	</head>
+	<body>
+		<table>
+			<tr >
+				<td valign="top">
+					<div>
+						<audio id="play_file" controls>
+						</audio>
+						<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
+					</div>
+				</td>
+				<td>
+					<img id="script" height="1200px"/>
+				</td>
+				<td valign="top">
+					<div id="select_file">
+						Part: 
+						<select id="part"></select>
+						Unit: 
+						<select id="unit" multiple></select>
+						<button id="get_file">Get file</button>
+					</div>
+					<button id="show_select" style="display: none">Select</button>
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+	<script>
+        $(document).ready(function() {
+			generate_part();
+			generate_unit();
+			
+			$('#get_file').click(function() {
+				$('#select_file').hide();
+				$('#show_select').show();
+				handleFile();
+			});
+			$('#show_select').click(function() {
+				$('#select_file').show();
+				$('#show_select').hide();
+			});
+            function handleFile(event) {
+				var part = $('#part').val();
+				var unit = $('#unit').val();
+				var speed = 1.25;
+				var audio = document.getElementById("play_file");
+				var src = $('#src');
+				var file_name = '';
+				if(Array.isArray(unit) === false){
+					unit = [unit];
 				}
 
-                document.getElementById("file").addEventListener("change", handleFile, true);
-			});
-        </script>
-    </head>
-	<div align="center">
-		<input type="file" id="file" multiple><br>
-		<audio id="play_file" controls>
-		</audio>
-		<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
-		<div><img id="script"/></div>
-	</div>
+                var i = 0, j = 1;
+				$("#count").text(j);
+				file_name = 'ListeningPracticeThroughDictation_' + part + '-' + unit[0];
+				audio.src = 'file listen/ListeningPracticeThroughDictation_' + part + '/' + file_name + '.mp3';
+				document.getElementById("script").src = "img/" + file_name + ".PNG";
+				audio.load();
+				audio.playbackRate = speed;
+                audio.play();
+				audio.addEventListener('ended', function () {
+                    i = ++i < unit.length ? i : 0;
+					file_name = 'ListeningPracticeThroughDictation_' + part + '-' + unit[i];
+					audio.src = 'file listen/ListeningPracticeThroughDictation_' + part + '/' + file_name + '.mp3';
+					document.getElementById("script").src = "img/" + file_name + ".PNG";
+					audio.load();
+                    audio.playbackRate = speed;
+					audio.play();
+					scroll();
+					i == 0 ? j++ : false ;
+					$("#count").text(j);
+                }, true);
+				scroll();
+            }
+
+			function scroll(){
+				window.scrollTo(document.body.scrollHeight, 0)
+				setTimeout(function(){
+					var interval = setInterval(function(){
+						window.scrollBy(0, 1);
+						if($(window).scrollTop() + $(window).height() == $(document).height()){
+							clearInterval(interval);
+						}
+					});
+				},1000);
+			}
+
+			function generate_part(){
+				for(var i = 1; i < 5; i++){
+					var option = ('<option value="' + i +'"> ' + i + '</option>')
+					$('#part').append(option);
+				}	
+			}
+
+			function generate_unit(){
+				for(var i = 1; i < 41; i++){
+					var val = i.toString().length === 1 ? ('0' + i) : i;
+					var option = $('<option value="' + val +'"> ' + val + '</option>')
+					$('#unit').append(option);
+				}	
+			}
+		});
+    </script>
 </html>
