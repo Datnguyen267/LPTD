@@ -3,17 +3,14 @@ $(document).ready(function() {
     generate_unit(40);
     var lptd_info = {
         "total": "40",
-        "file_name": "ListeningPracticeThroughDictation_",
-        "folder": "file listen/ListeningPracticeThroughDictation_"
+        "folder": "file listen/LPTD"
     };
-    var mina_info = {
+    var minna_info = {
         "total": "50",
-        "file_name": "ListeningPracticeThroughDictation_",
-        "folder": "file listen/Mina no Nihongo"
+        "folder": "file listen/Minna"
     };
     var shadowing_info = {
-        "total": "42",
-        "file_name": "ListeningPracticeThroughDictation_",
+        "total": "43",
         "folder": "file listen/Shadowing"
     };
     $('#type').change(function(){
@@ -21,8 +18,8 @@ $(document).ready(function() {
             $('#part').css('display', 'initial');
             generate_unit(lptd_info.total);
         }else{
-            if($(this).val() === 'mina'){
-                generate_unit(mina_info.total);
+            if($(this).val() === 'minna'){
+                generate_unit(minna_info.total);
             }
             if($(this).val() === 'shadowing'){
                 generate_unit(shadowing_info.total);
@@ -43,30 +40,58 @@ $(document).ready(function() {
         var type = $('#type').val();
         var part = $('#part').val();
         var unit = $('#unit').val();
-        var speed = 1.25;
+        var speed = 1;
         var audio = document.getElementById("play_file");
-        var file_name = '';
+        var src = '';
         if(Array.isArray(unit) === false){
             unit = [unit];
         }
 
         var i = 0, j = 1;
         $("#count").text(j);
-        file_name = 'ListeningPracticeThroughDictation_' + part + '-' + unit[0];
-        audio.src = 'file listen/ListeningPracticeThroughDictation_' + part + '/' + file_name + '.mp3';
-        document.getElementById("script").src = "img/" + file_name + ".PNG";
+        if(type === 'lptd'){
+            src = lptd_info.folder + part + '/' + unit[0] + '.mp3';
+            document.getElementById("script").src = "img/" + part + '-' + unit[0] + ".PNG";
+            speed = 1.25;
+        }
+        else{
+            if(type === 'minna'){
+                src = minna_info.folder + '/' + unit[0] + '.mp3';
+            }
+            if(type === 'shadowing'){
+                src = shadowing_info.folder + '/' + unit[0 + 1] + '.mp3';
+            }
+        }
+        
+
+        audio.src = src
         audio.load();
         audio.playbackRate = speed;
         audio.play();
+        $('#file_name').empty();
+        $('#file_name').append(unit[0]);
         scroll();
         audio.addEventListener('ended', function () {
             i = ++i < unit.length ? i : 0;
-            file_name = 'ListeningPracticeThroughDictation_' + part + '-' + unit[i];
-            audio.src = 'file listen/ListeningPracticeThroughDictation_' + part + '/' + file_name + '.mp3';
-            document.getElementById("script").src = "img/" + file_name + ".PNG";
+            if(type === 'lptd'){
+                src = lptd_info.folder + part + '/' + unit[i] + '.mp3';
+                document.getElementById("script").src = "img/" + part + '-' + unit[i] + ".PNG";
+                speed = 1.25;
+            }
+            else{
+                if(type === 'minna'){
+                    src = minna_info.folder + '/' + unit[i] + '.mp3';
+                }
+                if(type === 'shadowing'){
+                    src = shadowing_info.folder + '/' + unit[i + 1] + '.mp3';
+                }
+            }
+            audio.src = src;
             audio.load();
             audio.playbackRate = speed;
             audio.play();
+            $('#file_name').empty();
+            $('#file_name').append(unit[i]);
             scroll();
             i == 0 ? j++ : false ;
             $("#count").text(j);
