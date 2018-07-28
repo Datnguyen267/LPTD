@@ -59,7 +59,7 @@ $(document).ready(function() {
                 src = minna_info.folder + '/' + unit[0] + '.mp3';
             }
             if(type === 'shadowing'){
-                src = shadowing_info.folder + '/' + unit[0 + 1] + '.mp3';
+                src = shadowing_info.folder + '/' + unit[0] + '.mp3';
             }
         }
         
@@ -83,7 +83,7 @@ $(document).ready(function() {
                     src = minna_info.folder + '/' + unit[i] + '.mp3';
                 }
                 if(type === 'shadowing'){
-                    src = shadowing_info.folder + '/' + unit[i + 1] + '.mp3';
+                    src = shadowing_info.folder + '/' + unit[i] + '.mp3';
                 }
             }
             audio.src = src;
