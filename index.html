@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-		<title>Play english listen</title>
-		<link rel="icon" href="https://www.lingualearnenglish.com/blog/wp-content/uploads/2015/09/flag.jpg">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="script.js"></script>
-	</head>
-	<body>
-		<table>
-			<tr >
-				<td valign="top">
-					<div>
-						<audio id="play_file" controls>
-						</audio>
-						<span id="file_name"></span><br>
-						<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
-					</div>
-				</td>
-				<td>
-					<img id="script"/>
-				</td>
-				<td valign="top">
-					<div id="select_file">
-						<select id="type">
-							<option value="lptd">LPTD</option>
-							<option value="minna">Mina no Nihongo</option>
-							<option value="shadowing">Shadowing</option>
-						</select> 
+
+<head>
+	<title>Listen practice</title>
+	<link rel="icon" href="https://www.lingualearnenglish.com/blog/wp-content/uploads/2015/09/flag.jpg">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="script.js"></script>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td valign="top">
+				<div>
+					<audio id="play_file" controls>
+					</audio>
+					<p>Đang nghe lần thứ: <b><span id="count"></span></b></p>
+				</div>
+			</td>
+			<td>
+				<img id="script" />
+			</td>
+			<td valign="top">
+				<div id="select_file">
+					<select id="type">
+						<option>------</option>
+						<option value="lptd">LPTD</option>
+						<option value="minna">Minna no Nihongo</option>
+						<option value="shadowing">Shadowing</option>
+						<option value="ielts">IELTS</option>
+						<option value="jlpt">JLPT</option>
+					</select>
+					<div id="sub_select" style="display:none;">
 						<select id="part"></select>
 						<select id="unit" multiple size="5"></select>
 						<button id="get_file">Get file</button>
 					</div>
-					<button id="show_select" style="display: none">Select</button>
-				</td>
-			</tr>
-		</table>
-	</body>
+				</div>
+				<button id="show_select" style="display: none">Select</button>
+			</td>
+		</tr>
+	</table>
+</body>
+
 </html>

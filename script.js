@@ -1,128 +1,115 @@
-$(document).ready(function() {
-    generate_part();
-    generate_unit(40);
-    var lptd_info = {
-        "total": "40",
-        "folder": "file listen/LPTD"
-    };
-    var minna_info = {
-        "total": "50",
-        "folder": "file listen/Minna"
-    };
-    var shadowing_info = {
-        "total": "43",
-        "folder": "file listen/Shadowing"
-    };
-    $('#type').change(function(){
-        if($(this).val() === 'lptd'){
+$(document).ready(function () {
+    let data = [];
+    let speed = 1;
+    let audio = document.getElementById("play_file");
+    let unit = '';
+    let src = '';
+    get_data();
+
+    $('#type').change(function () {
+        if ($('#sub_select').css('display') == 'none') {
+            $('#sub_select').css('display', 'inline-block');
+        }
+        let type = $(this).val();
+        if (type === 'lptd') {
             $('#part').css('display', 'initial');
-            generate_unit(lptd_info.total);
-        }else{
-            if($(this).val() === 'minna'){
-                generate_unit(minna_info.total);
-            }
-            if($(this).val() === 'shadowing'){
-                generate_unit(shadowing_info.total);
-            }
+            generate_part();
+            generate_unit(type);
+        } else {
             $('#part').css('display', 'none');
+            generate_unit(type);
         }
     });
-    $('#get_file').click(function() {
+
+    $('#get_file').click(function () {
         $('#select_file').hide();
         $('#show_select').show();
         handleFile();
     });
-    $('#show_select').click(function() {
+
+    $('#show_select').click(function () {
         $('#select_file').show();
         $('#show_select').hide();
     });
-    function handleFile(event) {
-        var type = $('#type').val();
-        var part = $('#part').val();
-        var unit = $('#unit').val();
-        var speed = 1;
-        var audio = document.getElementById("play_file");
-        var src = '';
-        if(Array.isArray(unit) === false){
-            unit = [unit];
-        }
 
-        var i = 0, j = 1;
-        $("#count").text(j);
-        if(type === 'lptd'){
-            src = lptd_info.folder + part + '/' + unit[0] + '.mp3';
-            document.getElementById("script").src = "img/" + part + '-' + unit[0] + ".PNG";
-            speed = 1.25;
-        }
-        else{
-            if(type === 'minna'){
-                src = minna_info.folder + '/' + unit[0] + '.mp3';
-            }
-            if(type === 'shadowing'){
-                src = shadowing_info.folder + '/' + unit[0] + '.mp3';
-            }
-        }
-        
+    function handleFile() {
+        let unit_position = 0, played_count = 1;
+        process_src(unit_position);
+        play_audio(src, speed);
+        $("#count").text(played_count);
+        audio.addEventListener('ended', function () {
+            unit_position = ++unit_position < unit.length ? unit_position : 0;
+            process_src(unit_position);
+            play_audio(src, speed);
+            unit_position == 0 ? played_count++ : false;
+            $("#count").text(played_count);
+        }, true);
+    }
 
-        audio.src = src
+    function play_audio(src, speed) {
+        audio.src = src;
         audio.load();
         audio.playbackRate = speed;
         audio.play();
-        $('#file_name').empty();
-        $('#file_name').append(unit[0]);
-        scroll();
-        audio.addEventListener('ended', function () {
-            i = ++i < unit.length ? i : 0;
-            if(type === 'lptd'){
-                src = lptd_info.folder + part + '/' + unit[i] + '.mp3';
-                document.getElementById("script").src = "img/" + part + '-' + unit[i] + ".PNG";
-                speed = 1.25;
-            }
-            else{
-                if(type === 'minna'){
-                    src = minna_info.folder + '/' + unit[i] + '.mp3';
-                }
-                if(type === 'shadowing'){
-                    src = shadowing_info.folder + '/' + unit[i] + '.mp3';
-                }
-            }
-            audio.src = src;
-            audio.load();
-            audio.playbackRate = speed;
-            audio.play();
-            $('#file_name').empty();
-            $('#file_name').append(unit[i]);
-            scroll();
-            i == 0 ? j++ : false ;
-            $("#count").text(j);
-        }, true); 
     }
 
-    function scroll(){
+    function process_src(unit_position) {
+        let type = $('#type').val();
+        let part = $('#part').val();
+        unit = $('#unit').val();
+
+        if (Array.isArray(unit) === false) {
+            unit = [unit];
+        }
+
+        if (type === 'lptd') {
+            src = data[type + '_' + part][unit[unit_position]];
+            document.getElementById("script").src = "img/" + part + '-' + unit[unit_position] + ".PNG";
+            speed = 1.25;
+        }
+        else {
+            src = data[type][unit[unit_position]];
+        }
+    }
+
+    function scroll() {
         window.scrollTo(document.body.scrollHeight, 0)
-        setTimeout(function(){
-            var interval = setInterval(function(){
+        setTimeout(function () {
+            let interval = setInterval(function () {
                 window.scrollBy(0, 1);
-                if($(window).scrollTop() + $(window).height() == $(document).height()){
+                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                     clearInterval(interval);
                 }
             });
-        },40000);
+        }, 40000);
     }
 
-    function generate_part(){
-        for(var i = 1; i <= 4; i++){
-            var option = ('<option value="' + i +'"> Part ' + i + '</option>')
+    function generate_part() {
+        for (let i = 1; i <= 4; i++) {
+            let option = ('<option value="' + i + '"> Part ' + i + '</option>')
             $('#part').append(option);
-        }	
+        }
     }
 
-    function generate_unit(total){
+    function generate_unit(type) {
         $('#unit').empty();
-        for(var i = 1; i <= total; i++){
-            var val = i.toString().length === 1 ? ('0' + i) : i;
-            var option = $('<option value="' + val +'"> Unit ' + val + '</option>')
-            $('#unit').append(option);
-        }	
+        let unit_type = type == 'lptd' ? data[type + '_' + $('#part').val()] : data[type];
+
+        //Generate unit
+        for (const key in unit_type) {
+            if (unit_type.hasOwnProperty(key)) {
+                let option = $('<option value="' + key + '">' + key + '</option>')
+                $('#unit').append(option);
+            }
+        }
+    }
+
+    function get_data() {
+        $.ajax({
+            url: "data.json",
+            success: function (result) {
+                data = result;
+            }
+        });
     }
 });
