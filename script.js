@@ -7,9 +7,6 @@ $(document).ready(function () {
     get_data();
 
     $('#type').change(function () {
-        if ($('#sub_select').css('display') == 'none') {
-            $('#sub_select').css('display', 'inline-block');
-        }
         let type = $(this).val();
         if (type === 'lptd') {
             $('#part').css('display', 'initial');
@@ -85,6 +82,7 @@ $(document).ready(function () {
     }
 
     function generate_part() {
+        $('#part').empty();
         for (let i = 1; i <= 4; i++) {
             let option = ('<option value="' + i + '"> Part ' + i + '</option>')
             $('#part').append(option);
@@ -108,7 +106,18 @@ $(document).ready(function () {
         $.ajax({
             url: "data.json",
             success: function (result) {
-                data = result;
+                data = result['data'];
+
+                //Generate menu
+                for (const key in result['menu']) {
+                    if (result['menu'].hasOwnProperty(key)) {
+                        $('#type').append('<option value="' + key + '">' + result['menu'][key] + '</option>');
+                    }
+                }
+
+                //Generate unit of first menu
+                let first_menu = Object.keys(result['menu'])[0];
+                generate_unit(first_menu);
             }
         });
     }
