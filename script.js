@@ -59,13 +59,20 @@ $(document).ready(function () {
             unit = [unit];
         }
 
+        $("#file_name").text();
+        $("#file_name").text(unit[unit_position]);
+        document.getElementById("script").src = "";
+
         if (type === 'lptd') {
             src = data[type + '_' + part][unit[unit_position]];
-            document.getElementById("script").src = "img/" + part + '-' + unit[unit_position] + ".PNG";
+            document.getElementById("script").src = "img/lptd/" + part + unit[unit_position].replace("Unit ", "-") + ".PNG";
             speed = 1.25;
         }
         else {
             src = data[type][unit[unit_position]];
+            if (type.indexOf('shadowing') !== -1) {
+                document.getElementById("script").src = "img/shadowing/" + type.replace("shadowing", "") + unit[unit_position].replace("Unit ", "-") + ".PNG";
+            }
         }
     }
 
