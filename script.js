@@ -29,6 +29,16 @@ $(document).ready(function () {
         $('#show_select').hide();
     });
 
+    $(window).keypress(function (e) {
+        if (e.key === ' ' || e.key === 'Spacebar') {
+          if (audio.paused) {
+            audio.play();
+          }else{
+            audio.pause();
+          }
+        }
+      })
+
     function handleFile() {
         let unit_position = 0, played_count = 1;
         process_src(unit_position);
