@@ -8,14 +8,13 @@ $(document).ready(function () {
 
     $('#type').change(function () {
         let type = $(this).val();
-        if (type === 'lptd') {
-            $('#part').css('display', 'initial');
-            generate_part();
-            generate_unit(type);
-        } else {
-            $('#part').css('display', 'none');
-            generate_unit(type);
-        }
+        generate_part(type);
+        generate_unit(type);
+    });
+
+    $('#part').change(function () {
+        let type = $("#type").val();
+        generate_unit(type);
     });
 
     $('#get_file').click(function () {
@@ -31,13 +30,13 @@ $(document).ready(function () {
 
     $(window).keypress(function (e) {
         if (e.key === ' ' || e.key === 'Spacebar') {
-          if (audio.paused) {
-            audio.play();
-          }else{
-            audio.pause();
-          }
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
-      })
+    })
 
     function handleFile() {
         let unit_position = 0, played_count = 1;
@@ -73,17 +72,17 @@ $(document).ready(function () {
         $("#file_name").text(unit[unit_position]);
         document.getElementById("script").src = "";
 
-        if (type === 'lptd') {
-            src = data[type + '_' + part][unit[unit_position]];
-            document.getElementById("script").src = "img/lptd/" + part + unit[unit_position].replace("Unit ", "-") + ".PNG";
-            speed = 1.25;
-        }
-        else {
-            src = data[type][unit[unit_position]];
-            if (type.indexOf('shadowing') !== -1) {
-                document.getElementById("script").src = "img/shadowing/" + type.replace("shadowing", "") + unit[unit_position].replace("Unit ", "-") + ".PNG";
-            }
-        }
+        // if (type === 'lptd') {
+        //     src = data[type + '_' + part][unit[unit_position]];
+        //     document.getElementById("script").src = "img/lptd/" + part + unit[unit_position].replace("Unit ", "-") + ".PNG";
+        //     speed = 1.25;
+        // }
+        // else {
+        src = data[type][part][unit[unit_position]];
+        //     if (type.indexOf('shadowing') !== -1) {
+        //         document.getElementById("script").src = "img/shadowing/" + type.replace("shadowing", "") + unit[unit_position].replace("Unit ", "-") + ".PNG";
+        //     }
+        // }
     }
 
     function scroll() {
@@ -98,21 +97,24 @@ $(document).ready(function () {
         }, 40000);
     }
 
-    function generate_part() {
+    function generate_part(type) {
         $('#part').empty();
-        for (let i = 1; i <= 4; i++) {
-            let option = ('<option value="' + i + '"> Part ' + i + '</option>')
-            $('#part').append(option);
+        
+        for (const key in type) {
+            if (type.hasOwnProperty(key) && key.toString() != "name") {
+                let option = $('<option value="' + key + '">' + type[key] + '</option>')
+                $('#part').append(option);
+            }
         }
     }
 
     function generate_unit(type) {
         $('#unit').empty();
-        let unit_type = type == 'lptd' ? data[type + '_' + $('#part').val()] : data[type];
-
+        let part = $('#part').val();
+        let part_data = data[type][part];
         //Generate unit
-        for (const key in unit_type) {
-            if (unit_type.hasOwnProperty(key)) {
+        for (const key in part_data) {
+            if (part_data.hasOwnProperty(key)) {
                 let option = $('<option value="' + key + '">' + key + '</option>')
                 $('#unit').append(option);
             }
@@ -128,13 +130,16 @@ $(document).ready(function () {
                 //Generate menu
                 for (const key in result['menu']) {
                     if (result['menu'].hasOwnProperty(key)) {
-                        $('#type').append('<option value="' + key + '">' + result['menu'][key] + '</option>');
+                        $('#type').append('<option value="' + key + '">' + result['menu'][key]['name'] + '</option>');
                     }
                 }
 
-                //Generate unit of first menu
-                let first_menu = Object.keys(result['menu'])[0];
-                generate_unit(first_menu);
+                //Generate part of first type
+                let first_type = Object.keys(result['menu'])[0];
+                generate_part(result['menu'][first_type]);
+
+                //Generate unit of first part
+                generate_unit(first_type);
             }
         });
     }
