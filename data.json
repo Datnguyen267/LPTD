@@ -2,6 +2,7 @@
     "data": {
         "compass": {
             "analyst": {
+                "name": "Analyst",
                 "Analyst_01_01": "https://docs.google.com/uc?export=download&id=197JSmJ6IwdlxSkO0g3-x6DVS4v5WPSVd",
                 "Analyst_01_02": "https://docs.google.com/uc?export=download&id=1aF12o3ZsH6AiZUhqLuMVxnWjF6pfJiwn",
                 "Analyst_01_03": "https://docs.google.com/uc?export=download&id=1KRqeHGhRooJSVn_HrRnbTUdbilzOcVdt",
@@ -12,6 +13,7 @@
                 "Analyst_02_04": "https://docs.google.com/uc?export=download&id=1dZDWh3LPk4Bt6f2YuxR88ItbJM_Jc3K5"
             },
             "developing": {
+                "name": "Developing",
                 "Developing_01": "https://docs.google.com/uc?export=download&id=1SsQ9TI5Z1WPZPZaeZBS-cqRNvuS7SG2T",
                 "Developing_02": "https://docs.google.com/uc?export=download&id=1FTO1wqJE4UH8c4u8CbcSAoKlraPc8WSK",
                 "Developing_03": "https://docs.google.com/uc?export=download&id=1Je7-FzT7Ku7x5gjwU3QLnB4Ph9WyHSea",
@@ -20,12 +22,14 @@
                 "Developing_06": "https://docs.google.com/uc?export=download&id=15Es6bTym-_VYxVUC3KwTqJwB9LioZ2dL"
             },
             "starter": {
+                "name": "Starter",
                 "Starter_01": "https://docs.google.com/uc?export=download&id=1bAG9gwsUNhvlRRq0xUDSyjfykz3uT8rQ",
                 "Starter_02": "https://docs.google.com/uc?export=download&id=1OMjTLAo4b4bRxzds23HY8zRIuvefLMRL",
                 "Starter_03": "https://docs.google.com/uc?export=download&id=1xkBekES_HEtFziIOsYem7uD3L5YqCnjB",
                 "Starter_04": "https://docs.google.com/uc?export=download&id=1O5hqqilvgy_pIuh633Du0l7l7S38egI6"
             },
             "target": {
+                "name": "Target",
                 "Target_01_01": "https://docs.google.com/uc?export=download&id=17f-vBng-5CpVtK9zkroyai20XPizpw11",
                 "Target_01_02": "https://docs.google.com/uc?export=download&id=1dyvxxg00mJXHtC5TmQ2JxYMyRpD9fNPJ",
                 "Target_01_03": "https://docs.google.com/uc?export=download&id=1aNW4KRHSb1mfPqMQX4oJh3PAE8qGq9J9",
@@ -54,13 +58,16 @@
         },
         "ielts": {},
         "jlpt": {
-            "n2": {},
-            "n3": {},
-            "n4": {},
-            "n5": {}
+            "n2": {
+                "name": "N2"
+            },
+            "n3": {
+                "name": "N3"
+            }
         },
         "kikitori": {
             "shokyuu": {
+                "name": "初級",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1nqzBokTdhJVi3pHOHAQnDFjZPSAVEmzP",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1DUNz9J3Np1fRXcA2MGfNuIfAOgbg-c5S",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=1EloS4IY2TIjgJoLXTS5BuMhFbbnQPcBd",
@@ -113,6 +120,7 @@
                 "Unit 50": "https://docs.google.com/uc?export=download&id=1asUQcoG_L5MGRbToxKya-Xp1SULuZDTw"
             },
             "chuukyuu": {
+                "name": "中級",
                 "CD 1 - Unit 01": "https://docs.google.com/uc?export=download&id=1rHnPVgxWGlE3ezzr4OQzw-QekWE50uZO",
                 "CD 1 - Unit 02": "https://docs.google.com/uc?export=download&id=1kzt33jMSW2na5Buvz1EwF9FmAZG7w-ds",
                 "CD 1 - Unit 03": "https://docs.google.com/uc?export=download&id=1EWvMV8eZkHpQuJM0Ej1MIgnbnM1xjkfg",
@@ -242,6 +250,7 @@
         },
         "lptd": {
             "part1": {
+                "name": "Part1",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1QETnMbU3oLUoCNJnpSZ4MRxXI5CP5t5F",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1eGrsVMx5jYlQrg2W3szXvpniGz9bCSDQ",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=12D0GsQb5AfXXvjBHObaTCKeajPkrubOF",
@@ -284,6 +293,7 @@
                 "Unit 40": "https://docs.google.com/uc?export=download&id=13UUp9xKMwIxAnGHwUfGkvnMbH6nGKnic"
             },
             "part2": {
+                "name": "Part2",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1qn2BjoVyTJL1P8og1GSeh8homEpKmkFn",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1Dnl67C9i6mx9NEgftRXVr2BmpA71qVnM",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=1lZaoo8DlHn-7LWwXD6U0hAsQemZ9wvak",
@@ -326,6 +336,7 @@
                 "Unit 40": "https://docs.google.com/uc?export=download&id=1CGq4NQiViXg51_3FzLuRSEnGBhfGZ1h-"
             },
             "part3": {
+                "name": "Part3",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1vokKlRQTofdEmOfaM7EGKjxfeC6mCahi",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1welQIsV61KgUE6SJNGljbm0ibDY_Cht7",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=1muhsrf4rL5Yajil3thWe3QqBOCDq-qpl",
@@ -368,6 +379,7 @@
                 "Unit 40": "https://docs.google.com/uc?export=download&id=1VxQ5wax8lpTzgGbyQ2Wa91aiIaHEdZfq"
             },
             "part4": {
+                "name": "Part4",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1DjiiShSw5y1wR1itY9FzMrEZdr6Rz7PI",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1c1T-UP3hRzcxA3GZB2O12K7q2l2AbKwo",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=1yg0Hr-4niNTk-RvVndR69UQene1b21eL",
@@ -412,6 +424,7 @@
         },
         "mimikaraN3": {
             "goi": {
+                "name": "聴解",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1_EQRprTgav8pGW3frdEaJh5gPy5CuokH",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=1ssZVmJC9V7MeiEU_JP8oXOdboj2duzaA",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=14yAdhW03RH-7jdCcuNPHq9m4NposWdsk",
@@ -424,6 +437,7 @@
                 "Unit 12": "https://docs.google.com/uc?export=download&id=1M31v3cCHenlaGLePzbkKMutaK21xUvdJ"
             },
             "bunpou": {
+                "name": "文法",
                 "Unit 1": "https://docs.google.com/uc?export=download&id=1sBo8alK_aftlKIF9OqW0p_168lZ-KMHm",
                 "Unit 2": "https://docs.google.com/uc?export=download&id=1uiPpuaqNXlG2u3YOtP-EgOp4gPy7OaW7",
                 "Unit 3": "https://docs.google.com/uc?export=download&id=1xCWNdRQwUa6_nNHfHDpgg8S1rI6LLzbL",
@@ -436,8 +450,45 @@
                 "Unit 10": "https://docs.google.com/uc?export=download&id=18JkMzRthxuSrv4FxoAjdZn09cYwPgJhA"
             }
         },
+        "mimikaraN2": {
+            "goi": {
+                "name": "聴解",
+                "Unit 01": "https://docs.google.com/uc?export=download&id=1GcYd8FLGzkisrTinxH4ggrOXcT1YEST2",
+                "Unit 02": "https://docs.google.com/uc?export=download&id=16xoEBxEX4HWDwH6JDFg7n_SVkFnnEeSX",
+                "Unit 03": "https://docs.google.com/uc?export=download&id=1Dl0tgAmMK0HfgDkBlF6PRIpedtU8CyDe",
+                "Unit 04": "https://docs.google.com/uc?export=download&id=17DaSwNTHcEV4JYQrXq9qFM2ysWeC1VIn",
+                "Unit 05": "https://docs.google.com/uc?export=download&id=1YN5i3j-6_MXDh-qjXWvBiMekVaS2L5tg",
+                "Unit 06": "https://docs.google.com/uc?export=download&id=1Z87PAZIINVXHSiVM7vPCvDGxH2HK_QLK",
+                "Unit 07": "https://docs.google.com/uc?export=download&id=17vTczziq1K_XdmssyPmyFO9XTVckvQ7Y",
+                "Unit 08": "https://docs.google.com/uc?export=download&id=1HTvq9nMtHx1o8Ocr1ToPIJYiGy0aHTpv",
+                "Unit 09": "https://docs.google.com/uc?export=download&id=12bAn2b8HaMJggOw1aKiIgspA5iFpI49a",
+                "Unit 10": "https://docs.google.com/uc?export=download&id=1DGwBmtraso6DLLCp5k7UYUEZhZPqYT2z",
+                "Unit 11": "https://docs.google.com/uc?export=download&id=19j3gXdsmiLgzRY-hk0Y3yyAzZAbwKaWG",
+                "Unit 12": "https://docs.google.com/uc?export=download&id=1p9DMeb19_kpexv0Kw2kALkfPRojIOf7F",
+                "Unit 13": "https://docs.google.com/uc?export=download&id=1tYD6ya2h1mFNcqmr8Hhb4kkuw6MX6Z7M"
+            },
+            "bunpou": {
+                "name": "文法",
+                "Unit 01": "https://docs.google.com/uc?export=download&id=1-DCyy9QYH-x_NT8dEGrIfOY1B57d0iVJ",
+                "Unit 02": "https://docs.google.com/uc?export=download&id=1EtQGr26TnXSdlHck6sndLsgmXJnSdRNR",
+                "Unit 03": "https://docs.google.com/uc?export=download&id=1N2Dj_PtX39areeCECoTxaxQXX-oVLBDF",
+                "Unit 04": "https://docs.google.com/uc?export=download&id=14o5QI26Usrx54VrJ0L5w3mkg2jEa9Ebq",
+                "Unit 05": "https://docs.google.com/uc?export=download&id=1bhOnJ9fGiIskaQUUFwLHZq0FPQVh4zLM",
+                "Unit 06": "https://docs.google.com/uc?export=download&id=1JXjyyP8kTlPNekczubVe8_jzPhvZNN9A",
+                "Unit 07": "https://docs.google.com/uc?export=download&id=1ii5RrCRyZ1CYSS0fmbpAMEQjxBnluOqf",
+                "Unit 08": "https://docs.google.com/uc?export=download&id=15YJBNnD7dRSIwcORYND1cpHJW3WC2f7H",
+                "Unit 09": "https://docs.google.com/uc?export=download&id=1IjtBS9SYvQfV50LUcXLJ7ozfVUVvo5Rs",
+                "Unit 10": "https://docs.google.com/uc?export=download&id=13pvMLLn7qdDJWOysAUUYZvPYuXf2o-uw"
+            }
+        },
+        "shinkanzenN2": {
+            "bunpou": {
+                "name": "文法"
+            }
+        },
         "minna": {
             "n4": {
+                "name": "N4",
                 "Unit 26": "https://docs.google.com/uc?export=download&id=12nD2h1DCNS1sWoRYCqJnjn6ZBaSR_tjN",
                 "Unit 27": "https://docs.google.com/uc?export=download&id=14hDhmnfTu7QS559WqqI7dKJMKR3RW5hd",
                 "Unit 28": "https://docs.google.com/uc?export=download&id=1jCMjBmjHTta1AA-GsfsWyG7K-sZhRu2g",
@@ -465,6 +516,7 @@
                 "Unit 50": "https://docs.google.com/uc?export=download&id=1VZMphh0gthh7YJCYq5uQYrErBP9I3jsG"
             },
             "n5": {
+                "name": "N5",
                 "Unit 01": "https://docs.google.com/uc?export=download&id=1gMbKbwWaK-Q3Xm0kbF8Z9ogOef0khX_N",
                 "Unit 02": "https://docs.google.com/uc?export=download&id=13jYISSUgz76mGczVX-MpWy8DCIPk95z8",
                 "Unit 03": "https://docs.google.com/uc?export=download&id=1KFCA1CY2rq7hd3_F9i7axPpuJN-PE0-9",
@@ -494,6 +546,7 @@
         },
         "shadowing": {
             "hatsuChuu": {
+                "name": "初~中級編",
                 "Unit 01-01": "https://docs.google.com/uc?export=download&id=1nLvjCIygfZKNL3cujDqYx5LKsZ19HqBB",
                 "Unit 01-02": "https://docs.google.com/uc?export=download&id=19C0dZlYLFYkf_zSYw0grvGWtlOLwR7fC",
                 "Unit 01-03": "https://docs.google.com/uc?export=download&id=1aCPpJRSGWJ-9BnWcZCvqceZrDO8pnEQG",
@@ -538,6 +591,7 @@
                 "Unit 05-07": "https://docs.google.com/uc?export=download&id=1URnysfiX-2zXiY1f8TSxxsOoIRdJxFe6"
             },
             "chuuJou": {
+                "name": "中~上級編",
                 "Unit 01-01": "https://docs.google.com/uc?export=download&id=1FbboPz47nH9Wk9wc7WVbqZ1B6g4UTj4q",
                 "Unit 01-02": "https://docs.google.com/uc?export=download&id=120RFxbyTIhpAUQ9aLHzAdheaI0nnd1AM",
                 "Unit 02-01": "https://docs.google.com/uc?export=download&id=1GCcG9yOWqvQj3rK2tH_pTNhX7iBmhJzh",
@@ -564,49 +618,15 @@
         }
     },
     "menu": {
-        "compass": {
-            "name": "Compass TOEIC",
-            "analyst": "Analyst",
-            "developing": "Developing",
-            "starter": "Starter",
-            "target": "Target"
-        },
-        "ielts": {
-            "name": "IELTS"
-        },
-        "jlpt": {
-            "name": "Japanese Language Proficiency Test",
-            "n2": "N2",
-            "n3": "N3",
-            "n4": "N4",
-            "n5": "N5"
-        },
-        "kikitori": {
-            "name": "毎日の聞きとり",
-            "shokyuu": "初級",
-            "chuukyuu": "中級"
-        },
-        "mimikaraN3": {
-            "name": "耳から覚えるトレーニングN3",
-            "goi": "聴解",
-            "bunpou": "文法"
-        },
-        "lptd": {
-            "name": "Listen Practice Through Dictation",
-            "part1": "Part 1",
-            "part2": "Part 2",
-            "part3": "Part 3",
-            "part4": "Part 4"
-        },
-        "minna": {
-            "name": "みんなの日本語",
-            "n4": "N4",
-            "n5": "N5"
-        },
-        "shadowing": {
-            "name": "シャドーイング 日本語を話そう",
-            "hatsuChuu": "初~中級編",
-            "chuuJou": "中~上級編"
-        }
+        "compass": "Compass TOEIC",
+        "ielts": "IELTS",
+        "jlpt": "Japanese Language Proficiency Test",
+        "kikitori": "毎日の聞きとり",
+        "mimikaraN3": "耳から覚えるトレーニングN3",
+        "mimikaraN2": "耳から覚えるトレーニングN2",
+        "shinkanzenN2": "新完全マスター 日本語能力試験N2",
+        "lptd": "Listen Practice Through Dictation",
+        "minna": "みんなの日本語",
+        "shadowing": "シャドーイング 日本語を話そう"
     }
 }

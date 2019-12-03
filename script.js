@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $('#type').change(function () {
         let type = $(this).val();
-        generate_part(type);
+        generate_part(data[type]);
         generate_unit(type);
     });
 
@@ -68,21 +68,12 @@ $(document).ready(function () {
             unit = [unit];
         }
 
-        $("#file_name").text();
-        $("#file_name").text(unit[unit_position]);
-        document.getElementById("script").src = "";
+        // TODO Script
+        // $("#file_name").text();
+        // $("#file_name").text(unit[unit_position]);
+        // document.getElementById("script").src = "";
 
-        // if (type === 'lptd') {
-        //     src = data[type + '_' + part][unit[unit_position]];
-        //     document.getElementById("script").src = "img/lptd/" + part + unit[unit_position].replace("Unit ", "-") + ".PNG";
-        //     speed = 1.25;
-        // }
-        // else {
         src = data[type][part][unit[unit_position]];
-        //     if (type.indexOf('shadowing') !== -1) {
-        //         document.getElementById("script").src = "img/shadowing/" + type.replace("shadowing", "") + unit[unit_position].replace("Unit ", "-") + ".PNG";
-        //     }
-        // }
     }
 
     function scroll() {
@@ -101,8 +92,8 @@ $(document).ready(function () {
         $('#part').empty();
         
         for (const key in type) {
-            if (type.hasOwnProperty(key) && key.toString() != "name") {
-                let option = $('<option value="' + key + '">' + type[key] + '</option>')
+            if (type.hasOwnProperty(key)) {
+                let option = $('<option value="' + key + '">' + type[key]["name"] + '</option>')
                 $('#part').append(option);
             }
         }
@@ -114,7 +105,7 @@ $(document).ready(function () {
         let part_data = data[type][part];
         //Generate unit
         for (const key in part_data) {
-            if (part_data.hasOwnProperty(key)) {
+            if (part_data.hasOwnProperty(key)  && key.toString() != "name") {
                 let option = $('<option value="' + key + '">' + key + '</option>')
                 $('#unit').append(option);
             }
@@ -130,13 +121,13 @@ $(document).ready(function () {
                 //Generate menu
                 for (const key in result['menu']) {
                     if (result['menu'].hasOwnProperty(key)) {
-                        $('#type').append('<option value="' + key + '">' + result['menu'][key]['name'] + '</option>');
+                        $('#type').append('<option value="' + key + '">' + result['menu'][key] + '</option>');
                     }
                 }
 
                 //Generate part of first type
                 let first_type = Object.keys(result['menu'])[0];
-                generate_part(result['menu'][first_type]);
+                generate_part(data[first_type]);
 
                 //Generate unit of first part
                 generate_unit(first_type);
