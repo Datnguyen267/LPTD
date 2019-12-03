@@ -1,9 +1,11 @@
 $(document).ready(function () {
     let data = [];
-    let speed = 1;
+    let speed = $('#speed').val();
     let audio = document.getElementById("play_file");
     let unit = '';
     let src = '';
+    let played_units = [];
+    let played_count = 1;
     get_data();
 
     $('#type').change(function () {
@@ -28,6 +30,13 @@ $(document).ready(function () {
         $('#show_select').hide();
     });
 
+    $('#speed').change(function () {
+        speed = $(this).val();
+        audio.pause();
+        audio.playbackRate = speed;
+        audio.play();
+    });
+
     $(window).keypress(function (e) {
         if (e.key === ' ' || e.key === 'Spacebar') {
             if (audio.paused) {
@@ -39,27 +48,14 @@ $(document).ready(function () {
     })
 
     function handleFile() {
-        let unit_position = 0, played_count = 1;
-        process_src(unit_position);
-        play_audio(src, speed);
-        $("#count").text(played_count);
+
+        process_src();
         audio.addEventListener('ended', function () {
-            unit_position = ++unit_position < unit.length ? unit_position : 0;
-            process_src(unit_position);
-            play_audio(src, speed);
-            unit_position == 0 ? played_count++ : false;
-            $("#count").text(played_count);
+            process_src();
         }, true);
     }
 
-    function play_audio(src, speed) {
-        audio.src = src;
-        audio.load();
-        audio.playbackRate = speed;
-        audio.play();
-    }
-
-    function process_src(unit_position) {
+    function process_src() {
         let type = $('#type').val();
         let part = $('#part').val();
         unit = $('#unit').val();
@@ -68,29 +64,41 @@ $(document).ready(function () {
             unit = [unit];
         }
 
+        // process unit_position
+        let unit_position = 0;
+        while (true) {
+            unit_position = Math.floor(Math.random() * unit.length);
+
+            if (played_units.includes(unit_position) == true) {
+                if (played_units.length == unit.length) {
+                    played_units = [];
+                    played_count++;
+                }
+            } else {
+                played_units.push(unit_position);
+                break;
+            }
+        }
+
+
+        $("#count").text(played_count);
+
         // TODO Script
-        // $("#file_name").text();
-        // $("#file_name").text(unit[unit_position]);
         // document.getElementById("script").src = "";
 
-        src = data[type][part][unit[unit_position]];
-    }
+        $("#file_name").text(unit[unit_position]);
 
-    function scroll() {
-        window.scrollTo(document.body.scrollHeight, 0)
-        setTimeout(function () {
-            let interval = setInterval(function () {
-                window.scrollBy(0, 1);
-                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    clearInterval(interval);
-                }
-            });
-        }, 40000);
+        src = data[type][part][unit[unit_position]];
+
+        audio.src = src;
+        audio.load();
+        audio.playbackRate = speed;
+        audio.play();
     }
 
     function generate_part(type) {
         $('#part').empty();
-        
+
         for (const key in type) {
             if (type.hasOwnProperty(key)) {
                 let option = $('<option value="' + key + '">' + type[key]["name"] + '</option>')
@@ -105,7 +113,7 @@ $(document).ready(function () {
         let part_data = data[type][part];
         //Generate unit
         for (const key in part_data) {
-            if (part_data.hasOwnProperty(key)  && key.toString() != "name") {
+            if (part_data.hasOwnProperty(key) && key.toString() != "name") {
                 let option = $('<option value="' + key + '">' + key + '</option>')
                 $('#unit').append(option);
             }
