@@ -6,6 +6,7 @@ $(document).ready(function () {
     let src = '';
     let played_units = [];
     let played_count = 1;
+    let unit_position = -1;
     get_data();
 
     $('#type').change(function () {
@@ -48,7 +49,6 @@ $(document).ready(function () {
     })
 
     function handleFile() {
-
         process_src();
         audio.addEventListener('ended', function () {
             process_src();
@@ -65,20 +65,25 @@ $(document).ready(function () {
         }
 
         // process unit_position
-        let unit_position = 0;
-        while (true) {
-            unit_position = Math.floor(Math.random() * unit.length);
-
-            if (played_units.includes(unit_position) == true) {
-                if (played_units.length == unit.length) {
-                    played_units = [];
-                    played_count++;
+        if($('#shuffle').is(':checked')){
+            while (true) {
+                unit_position = Math.floor(Math.random() * unit.length);
+    
+                if (played_units.includes(unit_position) == true) {
+                    if (played_units.length == unit.length) {
+                        played_units = [];
+                        played_count++;
+                    }
+                } else {
+                    played_units.push(unit_position);
+                    break;
                 }
-            } else {
-                played_units.push(unit_position);
-                break;
             }
+        }else{
+            unit_position++;
+            played_units.push(unit_position);
         }
+       
 
 
         $("#count").text(played_count);
@@ -94,6 +99,12 @@ $(document).ready(function () {
         audio.load();
         audio.playbackRate = speed;
         audio.play();
+
+        if(unit_position + 1 == unit.length){
+            unit_position = -1;
+            played_units = [];
+            played_count++;
+        }
     }
 
     function generate_part(type) {
