@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let data = [];
+    let menu = [];
     let speed = $('#speed').val();
     let audio = document.getElementById("play_file");
     let unit = '';
@@ -7,11 +7,11 @@ $(document).ready(function () {
     let played_units = [];
     let played_count = 1;
     let unit_position = -1;
-    get_data();
+    get_menu();
 
     $('#type').change(function () {
         let type = $(this).val();
-        generate_part(data[type]);
+        generate_part(menu[type]);
         generate_unit(type);
     });
 
@@ -88,12 +88,12 @@ $(document).ready(function () {
 
         $("#count").text(played_count);
 
-        // TODO Script
-        // document.getElementById("script").src = "";
+        // show script
+        get_data(unit[unit_position]);
 
         $("#file_name").text(unit[unit_position]);
 
-        src = data[type][part][unit[unit_position]];
+        src = menu[type][part][unit[unit_position]];
 
         audio.src = src;
         audio.load();
@@ -121,21 +121,21 @@ $(document).ready(function () {
     function generate_unit(type) {
         $('#unit').empty();
         let part = $('#part').val();
-        let part_data = data[type][part];
+        let part_menu = menu[type][part];
         //Generate unit
-        for (const key in part_data) {
-            if (part_data.hasOwnProperty(key) && key.toString() != "name") {
+        for (const key in part_menu) {
+            if (part_menu.hasOwnProperty(key) && key.toString() != "name") {
                 let option = $('<option value="' + key + '">' + key + '</option>')
                 $('#unit').append(option);
             }
         }
     }
 
-    function get_data() {
+    function get_menu() {
         $.ajax({
-            url: "data.json",
+            url: "menu.json",
             success: function (result) {
-                data = result['data'];
+                menu = result['data'];
 
                 //Generate menu
                 for (const key in result['menu']) {
@@ -146,10 +146,22 @@ $(document).ready(function () {
 
                 //Generate part of first type
                 let first_type = Object.keys(result['menu'])[0];
-                generate_part(data[first_type]);
+                generate_part(menu[first_type]);
 
                 //Generate unit of first part
                 generate_unit(first_type);
+            }
+        });
+    }
+
+    function get_data(unit_position){
+        let type = $("#type").val();
+        $.ajax({
+            url: "data/" + type + ".json",
+            success: function (result) {
+                let part = $("#part").val();
+
+                $("#script").text = result[part][unit_position];
             }
         });
     }
