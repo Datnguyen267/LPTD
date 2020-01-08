@@ -65,10 +65,10 @@ $(document).ready(function () {
         }
 
         // process unit_position
-        if($('#shuffle').is(':checked')){
+        if ($('#shuffle').is(':checked')) {
             while (true) {
                 unit_position = Math.floor(Math.random() * unit.length);
-    
+
                 if (played_units.includes(unit_position) == true) {
                     if (played_units.length == unit.length) {
                         played_units = [];
@@ -79,11 +79,11 @@ $(document).ready(function () {
                     break;
                 }
             }
-        }else{
+        } else {
             unit_position++;
             played_units.push(unit_position);
         }
-       
+
 
 
         $("#count").text(played_count);
@@ -100,7 +100,7 @@ $(document).ready(function () {
         audio.playbackRate = speed;
         audio.play();
 
-        if(unit_position + 1 == unit.length){
+        if (unit_position + 1 == unit.length) {
             unit_position = -1;
             played_units = [];
             played_count++;
@@ -154,14 +154,14 @@ $(document).ready(function () {
         });
     }
 
-    function get_data(unit_position){
+    function get_data(unit_position) {
         let type = $("#type").val();
         $.ajax({
             url: "data/" + type + ".json",
             success: function (result) {
                 let part = $("#part").val();
 
-                $("#script").text = result[part][unit_position];
+                $("#script").text(result[part][unit_position]);
             }
         });
     }
